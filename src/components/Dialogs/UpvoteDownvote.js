@@ -2,15 +2,7 @@ import React, { useState } from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons'
 
-export default function Votes(props) {
-
-  const clickUpArrowHandler = () => {
-    props.upvoteHandler()
-  }
-
-  const clickDownArrowHandler = () => {
-    props.downvoteHandler()
-  }
+export default function UpvoteDownvote(props) {
 
   return (
     <Grid
@@ -23,12 +15,12 @@ export default function Votes(props) {
       <span style={{ cursor: 'pointer' }}>
         <KeyboardArrowUp
           color='primary'
-          onClick={clickUpArrowHandler}
+          onClick={props.upvoteHandler}
         ></KeyboardArrowUp>{' '}
       </span>
       <Typography color='textPrimary'>{props.votesState}</Typography>
       <span style={{ cursor: 'pointer' }}>
-        <KeyboardArrowDown color='primary' onClick={clickDownArrowHandler} />
+        <KeyboardArrowDown color='primary' onClick={props.downvoteHandler} />
       </span>
     </Grid>
   )
