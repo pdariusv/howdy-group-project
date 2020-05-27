@@ -6,11 +6,11 @@ export default function UpvoteDownvote(props) {
 
   return (
     <Grid
-      item
-      lg={2}
       style={{
-        textAlign: 'center'
+        display: 'inline-block', maxWidth: '25px'
       }}
+      disableGutters={true}
+      xs={1}
     >
       <span style={{ cursor: 'pointer' }}>
         <KeyboardArrowUp
@@ -18,10 +18,10 @@ export default function UpvoteDownvote(props) {
           onClick={props.upvoteHandler}
         ></KeyboardArrowUp>{' '}
       </span>
-      <Typography color='textPrimary'>{props.votesState}</Typography>
+      <Typography color='textPrimary' style={{ textAlign: 'center' }}>{props.votesState}</Typography>
       <span style={{ cursor: 'pointer' }}>
         <KeyboardArrowDown color='primary' onClick={props.downvoteHandler} />
       </span>
-    </Grid>
+    </Grid >
   )
 }
