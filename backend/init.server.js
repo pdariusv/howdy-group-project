@@ -73,10 +73,8 @@ const allPosts = getAllPosts();
 
 console.log('POSTS are: ', typeof(allPosts))
 
-/*
 for (post of allPosts) {
     deletePost(post._id)
 }
 
 allPosts = getAllPosts();
-*/

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons'
 
@@ -9,8 +9,6 @@ export default function UpvoteDownvote(props) {
       style={{
         display: 'inline-block', maxWidth: '25px'
       }}
-      disableGutters={true}
-      xs={1}
     >
       <span style={{ cursor: 'pointer' }}>
         <KeyboardArrowUp
