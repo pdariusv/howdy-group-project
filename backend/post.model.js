@@ -11,9 +11,6 @@ let Post = new Schema({
     postText: {
         type: String
     },
-    comment: {
-        type: Array
-    },
     flag: {
         type: Boolean
     },
@@ -22,7 +19,18 @@ let Post = new Schema({
     },
     votes: {
         type: Number
-    }
+    },
+    comment: [{
+        username: {
+            type: String
+        },
+        reply: {
+            type: String
+        },
+        notification: {
+            type: Boolean
+        }
+    }]
 })
 
 module.exports = mongoose.model('Post', Post);
