@@ -4,3 +4,5 @@
 3. Install [mongodb](https://docs.mongodb.com/manual/administration/install-community/)
 4. Start the mongodb database `mongod --config mongod.conf`
 5. Start the actual server `npm start`
+6. Initialize the database `node init.server.js`
+    * ONLY RUN THIS ONCE.
