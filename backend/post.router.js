@@ -10,6 +10,7 @@ postRouter.route('/').get((req, res) => {
         if (error) {
             console.log('ERROR: ', error);
         } else {
+            //console.log('Posts are ', posts.constructor.name)
             res.json(posts);
         }
     });
@@ -18,7 +19,7 @@ postRouter.route('/').get((req, res) => {
 // Get only one post for a given ID.
 postRouter.route('/:id').get((req, res) => {
     let id = req.params.id;
-    Post.findByID(id, (error, post) => {
+    Post.findById(id, (error, post) => {
         res.json(post);
     });
 });
@@ -52,7 +53,7 @@ postRouter.route('/update/:id').post((req, res) => {
 
             post.save()
             .then(post => {
-                res.json('Post updated!');
+                res.json({success: 'Post updated!'});
             })
             .catch(error => {
                 res.status(400).send('Update not possible');
@@ -63,16 +64,32 @@ postRouter.route('/update/:id').post((req, res) => {
 
 // Delete a post given an ID.
 postRouter.route('/delete/:id').post((req, res) => {
-    Post.findById(req.params.id, (error, post) => {
+    console.log('Deleting post');
+    Post.findByIdAndRemove(req.params.id, (error, post) => {
+        if (error) {
+            console.log('ERROR: ', error);
+            res.status(400).json({'post': 'Deleting post failed'});
+        } else {
+            console.log('Post deleted');
+            res.status(200).json({'post': 'Post deleted succesfully'})
+        }
+        /*
         if (!post) {
+            console.log('Post to delete not found')
             res.status(400).send("Post not found");
         } else {
             Post.deleteOne(post._id)
-            .then(error => {
+            .then(post => {
+                console.log('Post was deleted')
+                res.status(200).json({'success': 'Post Deleted!'});
+            })
+            .catch(error => {
+                console.log('ERROR: deleting post: ', error)
                 res.status(400).send('Could not delete post.')
             })
         }
-    })
-})
+        */
+    });
+});
 
 module.exports = postRouter
