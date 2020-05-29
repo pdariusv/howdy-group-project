@@ -11,19 +11,14 @@ export default function PostReplyList(props) {
 
   return (
     <div>
-      {props.oldReply.map((reply, index) => (
-        <Grid key={index} container spacing={3}>
-          <Grid key={index} item xs={12}>
+      {props.comments.map((comment, index) => (
+        <Grid key={comment.id} container spacing={3}>
+          <Grid item xs={12}>
             <Typography
-              key={index}
-              component="div"
-              variant="body1"
               color="textPrimary"
-              // className={classes.typoBody}
             >
               <PostReply
-                key={index}
-                PostReply={reply}
+                PostReply={comment}
                 removeReplyFunc={props.removeReplyFunc}
               />
             </Typography>
