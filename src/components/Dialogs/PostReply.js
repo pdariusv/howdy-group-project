@@ -1,71 +1,128 @@
-import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Paper from "@material-ui/core/Paper";
-// import Button from "@material-ui/core/Button";
+import React, { useState } from "react";
 import {
   Grid,
+  Container,
   Typography,
   ListItemText,
-  styled,
-  Button
+  Button,
+  Box,
+  TextField,
 } from "@material-ui/core";
-import { flexbox } from "@material-ui/system";
-
-const MyGrid = styled(Grid)({
-  // container: true,
-  display: flexbox,
-  paddingTop: 15
-});
-
-//??When I use this component why are all theme styles are overwritten?
-const MyButton = styled(Button)({
-  color: 'grey',
-  fontSize: 10,
-  
-});
+import { flexbox } from '@material-ui/system';
+import { makeStyles } from '@material-ui/core';
 
 
-//this is the component for the reply.
-export default function PostReplies(props) {
-  console.log("PostReply.js - props", props);
-  console.log("PostReply.js - props.removeReplyFunc", props.removeReplyFunc);
-  // console.log("PostReply.js - psotReply", postReply);
-  return (
-    <div
-    // className={classes.root}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    height: 140,
+    width: 100,
+  },
+  control: {
+    maringRight: '10px',
+  },
+}));
+
+function ReplyText(props) {
+
+  if (props.editEnabled === false) {
+    return (<Typography
+      component="div"
+      variant="body2"
+      color="textPrimary"
     >
-      <MyGrid container spacing={3}>
-        <Grid item xs={12}>
-          <ListItemText>
-            <MyButton >{props.PostReply.username}</MyButton>
-            <MyButton
-           
-              onClick={() => 
-                props.removeReplyFunc(props.PostReply.id)
-              }
-            >
-              Delete
-            </MyButton>
-            <MyButton
-             
+      {props.text}
+    </Typography>)
+  } else {
+    return (<TextField
+      name="reply"
+      variant="outlined"
+      label="Reply"
+      onChange={props.updateText}
+      placeholder="Type reply here..."
+      fullWidth
+      value={props.text}
+      margin={'normal'}
+    />)
+  }
+}
+
+export default function PostReply(props) {
+
+
+  const [state, setState] = useState({ edit: false, text: props.reply.text })
+
+  const classes = useStyles();
+
+  return (
+    <Grid>
+      <ReplyText text={state.text} editEnabled={state.edit} updateText={(e) => { setState({ ...state, text: e.target.value }) }} />
+      <Typography variant={'caption'}>{props.reply.username}</Typography>
+      <Grid container spacing={1}>
+        <Grid item >
+
+          {state.edit === false &&
+            <Button
+
+              id={'edit-button-' + props.reply.id}
+              data-reply-id={props.reply.id}
+              className={classes.control}
+              color={'primary'}
+              size={'small'}
+              variant={'outlined'}
+              disabled={props.currentUser.username !== props.reply.username}
               onClick={() => {
-                console.info("I'm an edit button.");
+                setState({ ...state, edit: true })
               }}
+              style={{ marging: '0 10px 0 0' }}
+              value={props.reply.id}
             >
               Edit
-            </MyButton>
+          </Button>
 
-            <Typography
-              component="div"
-              variant="body1"
-              color="textPrimary"
-              // className={classes.typoBody}
+          }
+
+          {state.edit === true &&
+            <Button
+
+              id={'edit-button-' + props.reply.id}
+              data-reply-id={props.reply.id}
+              className={classes.control}
+              color={'primary'}
+              size={'small'}
+              variant={'outlined'}
+              disabled={props.currentUser.username !== props.reply.username}
+              onClick={() => {
+                setState({ ...state, edit: false });
+                props.saveHandler(state);
+              }
+              }
+              style={{ marging: '0 10px 0 0' }}
+              value={props.reply.id}
             >
-              {props.PostReply.reply}
-            </Typography>
-          </ListItemText>
+              save
+          </Button>
+
+          }
+
         </Grid>
-      </MyGrid>
-    </div>
-  );
+        <Grid item >
+          <Button
+            data-reply-id={props.reply.id}
+            color={'secondary'}
+            size={'small'}
+            variant={'outlined'}
+            disabled={props.currentUser.username !== props.reply.username}
+            onClick={() =>
+              props.removeReplyFunc(props.PostReply.id)
+            }
+          >
+            Delete
+          </Button>
+        </Grid>
+      </Grid>
+    </Grid >
+  )
 }
