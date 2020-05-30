@@ -107,11 +107,11 @@ function App() {
             currentPost={currentPost}
             updatePost={updatePost}
 
-            // handleSubmit={handleSubmit}
-            // handleChangeText={handleChangeText}
-            // handleChangeTitle={handleChangeTitle}
-            // newPost={newPost}
-            // setNewPost={setNewPost}
+          // handleSubmit={handleSubmit}
+          // handleChangeText={handleChangeText}
+          // handleChangeTitle={handleChangeTitle}
+          // newPost={newPost}
+          // setNewPost={setNewPost}
           />
         )}
       />
