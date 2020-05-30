@@ -1,6 +1,7 @@
+const demoDB = require('./demo.db.js')
 const fetch = require('node-fetch');
 const URL = 'http://localhost:3000/posts/'
-//const postData = require('./store')
+let debug = false;
 
 async function addPost(post) {
     const res = await fetch(`${URL}/add`, {
@@ -12,10 +13,10 @@ async function addPost(post) {
     });
     try {
         const postRes = await res.json();
-        console.log('Response for addPost was: ', postRes);
+        if (debug) console.log('Response for addPost was: ', postRes);
         return true;
     } catch(error) {
-        console.log('ERROR adding post: ', error);
+        if (debug) console.log('ERROR adding post: ', error);
         return false;
     }
 }
@@ -25,10 +26,10 @@ async function getPostByID(id) {
     const res = await fetch(`${URL}/${id}`);
     try {
         const post = await res.json()
-        console.log('Got post with response: ', res)
+        if (debug) console.log('Got post with response: ', res)
         return post;
     } catch(error) {
-        console.log('ERROR getting one post ', error);
+        if (debug) console.log('ERROR getting one post ', error);
         return false
     }
 }
@@ -40,80 +41,68 @@ async function getAllPosts() {
         return posts;
 
     } catch(error) {
-        console.log('ERROR getting all posts: ', error);
+        if (debug) console.log('ERROR getting all posts: ', error);
         return false;
     }
 }
 
 async function deletePost(post) {
-    console.log('Deleting post', post)
+    if (debug) console.log('Deleting post', post)
     const id = post._id;
     const res = await fetch(`${URL}delete/${id}`, {
         method: 'POST'
     });
     try {
         const response = await res.json();
-        console.log('Deleted post');
+        if (debug) console.log('Deleted post ', post._id);
         return true;
     } catch(error) {
-        console.log(res);
-        console.log('ERROR deleting post: ', error);
+        if (debug) console.log(res);
+        if (debug) console.log('ERROR deleting post: ', error);
         return false;
     }
 }
 
-const demoPost = {
-    //_id: 1,
-    title: 'The almost-reactor',
-    name: 'Randy Esposito',
-    postText:
-      'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    flag: 0,
-    date: 'Nov 16, 2019',
-    votes: 0,
-    comment: [
-        {
-            username: 'user1',
-            reply: 'this is a comment to the post',
-            notification: false
-        },
-        {
-            username: 'user2',
-            reply: 'another random comment to the post',
-            notification: false
-        },
-    ]
+async function loadDemoPosts(demoPosts) {
+    for (demoPost of demoPosts) {
+        if (debug) console.log('Adding demo post', demoPost)
+        await addPost(demoPost);
+    }
+    return 1;
 }
 
-let posts = [];
-//addPost(demoPost);
-getAllPosts()
-.then((data) => {
-    //console.log('Data is ', data);
-    posts = data;
-    //console.log('Got all posts: ', posts);
-    console.log('posts are instance of ', posts.constructor.name)
-    return posts;
-})
-.then((posts) => {
-    console.log('POSTS are: ', typeof(posts), ' and length is: ', posts.length)
-    //for (post of posts) {
-    for (let i = 0; i < posts.length; i++) {
-        post = posts[i];
-        deletePost(post)
-        /*
-        getPostByID(post._id)
-        .then(retPost => {
-            console.log('Got this post ', retPost)
-        })
-        */
+async function loadDemoDB() {
+    const posts = await getAllPosts();
+    await loadDemoPosts(demoDB.demoPosts)
+}
+
+async function checkDemoDBLoad() {
+    const posts = await getAllPosts();
+    if (posts.length === demoDB.demoPosts.length) {
+        console.log('Demo DB loaded correctly')
+    } else {
+        console.log('ERROR loading Demo DB', posts.length, demoDB.demoPosts.length)
     }
-})
+    return 1;
+}
 
+ async function deleteAllPosts() {
+    const posts = await getAllPosts()
+    for (let i = 0; i < posts.length; i++) {
+        ///let post = post[i];
+        await deletePost(posts[i]);
+    }
+    return 1;
+}
 
-/*
-getAllPosts()
-.then((posts) => {
-    //console.log(posts)
-})
-*/
+async function initServer() {
+    getAllPosts()
+    console.log('Deleting all posts to start from blank slate');
+    await deleteAllPosts();
+    console.log('Loading DEMO DB');
+    await loadDemoDB();
+    console.log('Checking that DEMO DB loaded correctly');
+    await checkDemoDBLoad();
+}
+
+initServer()

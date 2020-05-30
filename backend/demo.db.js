@@ -1,31 +1,24 @@
-export const postData = [
+const demoPosts = [
   {
-    _id: 1,
     title: 'The almost-reactor',
     name: 'Randy Esposito',
     postText:
       'standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     comment: [
         {
-            _id: 1,
-            PostId: 1,
             username: 'user1',
             reply: 'this is a comment to the post',
-            notification: ''
+            notification: false
         },
         {
-            id: 2,
-            PostId: 1,
             username: 'user2',
             reply: 'another comment to the post',
-            notification: ''
+            notification: false
         },
         {
-            id: 3,
-            PostId: 2,
             username: 'user1',
             reply: 'yet another comment to the post',
-            notification: ''
+            notification: false
         }
         ],
     flag: true,
@@ -33,7 +26,6 @@ export const postData = [
     votes: 0
   },
   {
-    _id: 2,
     title: 'These are great resources for learning Vue.js',
     name: 'Scottie Wall',
     postText:
@@ -44,7 +36,6 @@ export const postData = [
     votes: 3
   },
   {
-    _id: 3,
     title: 'How to understand a component lifecyle',
     name: 'Ann Zio',
     postText:
@@ -55,7 +46,6 @@ export const postData = [
     votes: 5
   },
   {
-    _id: 4,
     title: 'Email Confirmation with React',
     name: 'Lucy Tigier',
     postText:
@@ -66,7 +56,6 @@ export const postData = [
     votes: 3
   },
   {
-    _id: 5,
     title: 'Ten Rules for Negotiating a Job Offer',
     name: 'Coretta Harr',
     postText:
@@ -77,7 +66,6 @@ export const postData = [
     votes: 7
   },
   {
-    _id: 6,
     title: 'The 6 Best Podcast of 2019',
     name: 'Darlene Mund',
     postText:
@@ -88,7 +76,6 @@ export const postData = [
     votes: 9
   },
   {
-    _id: 7,
     title: 'Machining Learning is Fun',
     name: 'Carmen Taylor',
     postText:
@@ -99,7 +86,6 @@ export const postData = [
     votes: 1
   },
   {
-    _id: 8,
     title: 'Seeding MongoDB database the right away',
     name: 'Roxie Holly',
     postText:
@@ -110,7 +96,6 @@ export const postData = [
     votes: 17
   },
   {
-    _id: 9,
     title: 'JavaScript Strings in Detail',
     name: 'Jack Parnell',
     postText:
@@ -121,3 +106,6 @@ export const postData = [
     votes: 9
   }
 ]
+
+//export default demoPosts;
+exports.demoPosts = demoPosts;
