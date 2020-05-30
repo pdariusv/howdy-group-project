@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 // import styled from "styled-components";
 
@@ -16,6 +16,18 @@ function App() {
   //NEW POST CONTROLLERS
 
   /*****POST CONTROLLER LOGIC*********/
+  useEffect(() => {
+    const axios = require('axios').default;
+    axios({
+      method: 'get',
+      url: 'http://localhost:3000/posts',
+      responseType: 'json'
+    })
+      .then(function (response) {
+        setUserPosts(response.data)
+      });
+  });
+
 
   //Initial formstate is for setting current post. This is then updated basedon the post that the user wants to edit.
   const initialFormState = {
