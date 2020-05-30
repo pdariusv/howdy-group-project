@@ -41,6 +41,7 @@ export default function Post(props) {
           }
           secondary={
             <React.Fragment>
+              {/*
               <Typography
                 component="span"
                 variant="body2"
@@ -51,6 +52,7 @@ export default function Post(props) {
               </Typography>
               {props.post.comment} {props.post.comment} {props.post.flag}{" "}
               {props.post.date} {props.post.time}
+              */}
             </React.Fragment>
           }
         />
