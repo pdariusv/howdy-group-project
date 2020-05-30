@@ -9,6 +9,11 @@ You will have to have npm installed.
 After having cloned the repo run the following on the repo directory.
 
 ```
+fork from master branch and submit pull requests to develop branch
+
+```
+
+```
 npm install
 npm start
 ```
