@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-// import styled from "styled-components";
-
-//comment data may not need to be passed down to rightpanel.
 import { comments, postData } from "./data/store.js";
-
 import CombinedPanels from "./components/Forum/Combined-Panels";
-
 import PostDetail from "./components/Dialogs/PostDetail.js";
-// import PostReply from "./components/Dialogs/PostReply.js";
 
 // import "./App.css";
 
 function App() {
-  //NEW POST CONTROLLERS
 
-  /*****POST CONTROLLER LOGIC*********/
   useEffect(() => {
     const axios = require('axios').default;
     axios({
@@ -87,7 +79,6 @@ function App() {
 
   /*****REPLY CONTROLLER LOGICSHOULD GO HERE BUT CURRENTLY IN POSTDETAIL.JS; NEEDS TO BE RE-FACTORED.*********/
 
-  
   return (
     <div className="App">
       <Route
