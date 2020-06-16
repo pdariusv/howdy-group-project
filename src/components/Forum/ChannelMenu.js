@@ -1,107 +1,59 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
 
-
-//this was default styling from Material UI docs. Should change to styled components.
-//code below is picked out from material ui docs. It's the channel menu that will be used to attach a given post to a particular channel.
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex"
+const useStyles = makeStyles((theme) => ({
+  button: {
+    display: "block",
+    marginTop: theme.spacing(2),
   },
-  paper: {
-    marginRight: theme.spacing(2)
-  }
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
-
-
-export default function ChannelMenu() {
+export default function ControlledOpenSelect() {
   const classes = useStyles();
+  const [channel, setChannel] = React.useState("");
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
 
-  const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+  const handleChange = (event) => {
+    setChannel(event.target.value);
   };
 
-  const handleClose = event => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
+  const handleClose = () => {
     setOpen(false);
   };
 
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Button
-          ref={anchorRef}
-          aria-controls={open ? "menu-list-grow" : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
+    <div>
+      <FormControl className={classes.formControl}>
+        <Button className={classes.button} onClick={handleOpen}>
           Select Channel
         </Button>
-      </Paper>
-      <div>
-        <Popper
+        <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
           open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={channel}
+          onChange={handleChange}
         >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom"
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={open}
-                    id="menu-list-grow"
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <MenuItem onClick={handleClose}>General</MenuItem>
-                    <MenuItem onClick={handleClose}>Introductions</MenuItem>
-                    <MenuItem onClick={handleClose}>Show Collabo</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+          <MenuItem value="General">General</MenuItem>
+          <MenuItem value="Technical">Technical</MenuItem>
+          <MenuItem value="Jobs">Jobs</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 }
