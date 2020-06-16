@@ -67,6 +67,11 @@ export default function Links() {
       <Link variant="body2" href="#" onClick={preventDefault}>
         Guidlines
       </Link>
+      <div>
+      <Link variant="body2" href="#" onClick={preventDefault}>
+        Directives
+      </Link>
+      </div>
     </MyBox>
   );
 }
