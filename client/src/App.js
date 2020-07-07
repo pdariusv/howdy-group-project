@@ -14,7 +14,7 @@ import PostDetail from "./components/Dialogs/PostDetail.js";
 // import "./App.css";
 
 function App() {
-  axios.get('/posts')
+  axios.get('/posts').then(res => console.log(res));
 
   //NEW POST CONTROLLERS
 
