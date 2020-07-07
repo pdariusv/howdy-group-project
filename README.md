@@ -1,23 +1,8 @@
-# Howdy Group Project
-
-This the [JoinHowdy](https://www.joinhowdy.com/) web dev project.
-The project consists on a forum developed using React.
-
-## Setting up a local development environment
-
-You will have to have npm installed.
-After having cloned the repo run the following on the repo directory.
-
-```
-fork from master branch and submit pull requests to develop branch
-
-```
-
-```
-npm install
-npm start
-```
-
-This should start a local server.
-
-
+## Setting up a local back end server
+1. Make sure you're in the backend directory `cd backend`
+2. Install the backend dependencies `npm install`
+3. Install [mongodb](https://docs.mongodb.com/manual/administration/install-community/)
+4. Start the mongodb database `mongod --config mongod.conf`
+5. Start the actual server `npm start`
+6. Initialize the database `node init.server.js`
+    * ONLY RUN THIS ONCE.

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
+import axios from 'axios';
 // import styled from "styled-components";
 
 //comment data may not need to be passed down to rightpanel.
@@ -13,6 +14,8 @@ import PostDetail from "./components/Dialogs/PostDetail.js";
 // import "./App.css";
 
 function App() {
+  axios.get('/posts')
+
   //NEW POST CONTROLLERS
 
   /*****POST CONTROLLER LOGIC*********/
