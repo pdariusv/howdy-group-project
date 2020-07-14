@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Box,  styled, Link, Typography } from "@material-ui/core";
-
+import {Link as Lien} from "react-router-dom"
 
 //would be good to know what this stuff does.
 // const useStyles = makeStyles(theme => ({
@@ -71,6 +71,11 @@ export default function Links() {
       <Link variant="body2" href="#" onClick={preventDefault}>
         Directives
       </Link>
+      </div>
+      <div>
+        <Lien to="/StaticPage">
+          Staic page using using react-router-dom
+        </Lien>
       </div>
     </MyBox>
   );
