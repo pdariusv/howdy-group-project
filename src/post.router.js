@@ -10,7 +10,7 @@ postRouter.route('/').get((req, res) => {
         if (error) {
             console.log('ERROR: ', error);
         } else {
-            //console.log('Posts are ', posts.constructor.name)
+            console.log('Posts are ', posts.constructor.name)
             res.json(posts);
         }
     });
