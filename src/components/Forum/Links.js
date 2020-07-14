@@ -67,14 +67,11 @@ export default function Links() {
       <Link variant="body2" href="#" onClick={preventDefault}>
         Guidlines
       </Link>
-<<<<<<< HEAD
       <div>
       <Link variant="body2" href="#" onClick={preventDefault}>
         Directives
       </Link>
       </div>
-=======
->>>>>>> parent of f21fa4c... Add simple link called Directives to link module
     </MyBox>
   );
 }
