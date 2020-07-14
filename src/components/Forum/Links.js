@@ -47,20 +47,6 @@ export default function Links() {
   // const classes = useStyles();
   const preventDefault = event => event.preventDefault();
 
-  const handleClickMaPageStatique = () => {
-    var myWindow = window.open("", "MyMessageWindow", "width=200,height=100");
-    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
-  };
-
-  const handleClickMaPageStatique_self = () => {
-    var myWindow = window.open("", "_self", "width=200,height=100");
-    myWindow.document.write("<p>I replaced the current window.</p>");
-  };
-  
-  const handleClickMaPageStatique_blank = () => {
-    window.open("https://www.google.com/", "_blank",  "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
-  };
-
   return (
     <MyBox
     // className={classes.root}
@@ -83,23 +69,8 @@ export default function Links() {
       </Link>
 <<<<<<< HEAD
       <div>
-      <Link variant="body2" href="https://www.google.com">
-        Link[Il faut enlever le preventDefault]
-      </Link>
-      </div>
-      <div>
-      <Link variant="body2" href="#" onClick={handleClickMaPageStatique}>
-        Link[Evenement click fonctionne bien]
-      </Link>
-      </div>
-      <div>
-      <Link variant="body2" href="#" onClick={handleClickMaPageStatique_self}>
-        Link[Evenement click fonctionne bien _self]
-      </Link>
-      </div>
-      <div>
-      <Link variant="body2" href="#" onClick={handleClickMaPageStatique_blank}>
-        Link[Evenement click fonctionne bien _blank]
+      <Link variant="body2" href="#" onClick={preventDefault}>
+        Directives
       </Link>
       </div>
 =======
