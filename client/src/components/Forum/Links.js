@@ -2,7 +2,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Box,  styled, Link, Typography } from "@material-ui/core";
-
+import {Link as RouterLink} from "react-router-dom"
+import StaticPage  from './StaticPage';
 
 //would be good to know what this stuff does.
 // const useStyles = makeStyles(theme => ({
@@ -67,6 +68,16 @@ export default function Links() {
       <Link variant="body2" href="#" onClick={preventDefault}>
         Guidlines
       </Link>
+      <div>
+      <Link variant="body2" href="#" onClick={preventDefault}>
+        Directives
+      </Link>
+      </div>
+      <div>
+        <Link component={RouterLink} to="/static-page">
+          Staic page using using react-router-dom TEST
+        </Link>
+      </div>
     </MyBox>
   );
 }

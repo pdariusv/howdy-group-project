@@ -7,6 +7,8 @@ import axios from 'axios';
 import { comments, postData } from "./data/store.js";
 import CombinedPanels from "./components/Forum/Combined-Panels";
 import PostDetail from "./components/Dialogs/PostDetail.js";
+import StaticPage from "./components/Forum/StaticPage";
+// import PostReply from "./components/Dialogs/PostReply.js";
 
 // import "./App.css";
 
@@ -118,6 +120,10 @@ function App() {
         render={props => (
           <PostDetail {...props} comments={comments} post={postData} />
         )}
+      />
+       <Route
+        path="/static-page"
+        render={StaticPage}
       />
     </div>
   );
