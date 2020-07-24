@@ -4,10 +4,10 @@ import {
   ListItem,
   Button,
   ListItemText,
-  Typography,
+  //Typography,
   Link,
   ListItemIcon,
-  styled
+  styled,
 } from "@material-ui/core";
 import Icon from "@material-ui/core/Icon";
 
@@ -20,7 +20,7 @@ const MyButton = styled(Button)({
   fontSize: 10,
   marginLeft: 52,
   marginRight: -70,
-  marginTop: -20
+  marginTop: -20,
   //paddingLeft: 70
 });
 export default function Post(props) {
@@ -63,7 +63,7 @@ export default function Post(props) {
         editPost={props.editPost}
         currentPost={props.currentPost}
         updatePost={props.updatePost}
-        post ={props.post}
+        post={props.post}
       />
       />
       <MyButton
