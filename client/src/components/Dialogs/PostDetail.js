@@ -2,7 +2,6 @@ import _ from "lodash";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Paper, Container, Grid, Typography } from "@material-ui/core";
-
 import PostReply from "./PostReply.js";
 import UpvoteDownVote from "./UpvoteDownvote.js";
 import ReplyForm from "./ReplyForm.js";

@@ -4,7 +4,7 @@ import {
   ListItem,
   Button,
   ListItemText,
-  //Typography,
+  Typography,
   Link,
   ListItemIcon,
   styled,
@@ -65,7 +65,7 @@ export default function Post(props) {
         updatePost={props.updatePost}
         post={props.post}
       />
-      />
+
       <MyButton
         onClick={() => {
           props.deletePost(props.post.id);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 // import styled from "styled-components";
 
 //comment data may not need to be passed down to rightpanel.
@@ -11,7 +11,7 @@ import PostDetail from "./components/Dialogs/PostDetail.js";
 // import "./App.css";
 
 function App() {
-  axios.get('/posts').then(res => console.log(res));
+  /*axios.get('/posts').then(res => console.log(res));
 
   //NEW POST CONTROLLERS
 
@@ -25,8 +25,7 @@ function App() {
       .then(function (response) {
         setUserPosts(response.data)
       });
-  });
-
+  });*/
 
   //Initial formstate is for setting current post. This is then updated basedon the post that the user wants to edit.
   const initialFormState = {
@@ -37,7 +36,7 @@ function App() {
     comment: null,
     flag: null,
     date: null,
-    time: null
+    time: null,
   };
 
   //sets inital list of posts that are stored in db (currently dummy data in store.js)
@@ -46,9 +45,28 @@ function App() {
   const [currentPost, setCurrentPost] = useState(initialFormState);
   //editing switch.  HOwever, this is not used as newpost and edit existing forms are in seperate pages.
   const [editing, setEditing] = useState(false);
+  //set fetching state during db fetch requests
+  const [isFetching, setIsFetching] = useState(false);
+
+  //logic for fetching posts from the server
+  const fetchAllPosts = React.useCallback(async () => {
+    setIsFetching(true);
+    try {
+      const response = await axios.get("/posts/");
+      setUserPosts(response.data);
+      setIsFetching(false);
+    } catch (error) {
+      console.log(error);
+      setIsFetching(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchAllPosts();
+  }, [fetchAllPosts]);
 
   //logic for adding new post.
-  const addPost = newPost => {
+  const addPost = (newPost) => {
     newPost.id = userPosts.length + 1;
     const newPosts = [...userPosts, newPost];
     console.log("App.js - addPost - newPosts updated", newPosts);
@@ -57,19 +75,21 @@ function App() {
   };
 
   //logic for deleting post.
-  const deletePost = id => {
+  const deletePost = (id) => {
     setEditing(false);
-    setUserPosts(userPosts.filter(post => post.id !== id));
+    setUserPosts(userPosts.filter((post) => post.id !== id));
   };
 
   //logic for updating a post once it's edited.
   const updatePost = (id, updatedPost) => {
     setEditing(false);
-    setUserPosts(userPosts.map(post => (post.id === id ? updatedPost : post)));
+    setUserPosts(
+      userPosts.map((post) => (post.id === id ? updatedPost : post))
+    );
   };
 
   //edits existin post.
-  const editPost = post => {
+  const editPost = (post) => {
     setEditing(true);
 
     setCurrentPost({
@@ -80,7 +100,7 @@ function App() {
       comment: post.comment,
       flag: post.flag,
       date: post.date,
-      time: post.time
+      time: post.time,
     });
   };
 
@@ -91,7 +111,7 @@ function App() {
       <Route
         exact
         path="/"
-        render={props => (
+        render={(props) => (
           <CombinedPanels
             {...props}
             // post={postData}
@@ -105,17 +125,17 @@ function App() {
             currentPost={currentPost}
             updatePost={updatePost}
 
-          // handleSubmit={handleSubmit}
-          // handleChangeText={handleChangeText}
-          // handleChangeTitle={handleChangeTitle}
-          // newPost={newPost}
-          // setNewPost={setNewPost}
+            // handleSubmit={handleSubmit}
+            // handleChangeText={handleChangeText}
+            // handleChangeTitle={handleChangeTitle}
+            // newPost={newPost}
+            // setNewPost={setNewPost}
           />
         )}
       />
       <Route
         path="/posts/:id"
-        render={props => (
+        render={(props) => (
           <PostDetail {...props} comments={comments} post={postData} />
         )}
       />

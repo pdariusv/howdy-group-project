@@ -13,15 +13,13 @@ import { styled } from "@material-ui/core";
 // import LeftDivider from "./LeftDivider.js";
 import ChannelMenu from "./ChannelMenu.js";
 
-
-
 //This componnet is the form that is generated (with the editable post text) when user selects 'edit' button attached to a given post.
 const MyButton = styled(Button)({
   color: "grey",
   fontSize: 10,
   marginLeft: 52,
   marginRight: -70,
-  marginTop: -20
+  marginTop: -20,
   //paddingLeft: 70
 });
 
@@ -46,21 +44,19 @@ export default function EditPostForm(props) {
 
   useEffect(() => {
     setPost(props.currentPost);
-  }, [props]);
-
-
+  }, [props.currentPost]);
 
   //Why does this render so many times?
-  console.log("EditPostForm - currentPost", props.currentPost);
+  //console.log("EditPostForm - currentPost", props.currentPost);
   // console.log("EditPostForm - props.post", props.post);
 
   // Handle Submit of New Post
-  const handleChangeText = event => {
+  const handleChangeText = (event) => {
     const { name, value } = event.target;
     setPost({ ...post, [name]: value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     props.updatePost(post.id, post);
@@ -94,7 +90,6 @@ export default function EditPostForm(props) {
       >
         <DialogTitle id="form-dialog-title">Post</DialogTitle>
         <DialogContent>
-
           <ChannelMenu />
           <TextField
             autoFocus
@@ -131,7 +126,7 @@ export default function EditPostForm(props) {
             Cancel
           </Button>
           <Button
-            onClick={e => {
+            onClick={(e) => {
               handleClose();
               handleSubmit(e);
             }}
