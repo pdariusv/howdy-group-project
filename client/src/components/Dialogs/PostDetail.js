@@ -1,14 +1,14 @@
-import _ from "lodash"
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import { Paper, Container, Grid, Typography } from "@material-ui/core"
+import _ from "lodash";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Paper, Container, Grid, Typography } from "@material-ui/core";
 
-import PostReply from "./PostReply.js"
-import UpvoteDownVote from "./UpvoteDownvote.js"
-import ReplyForm from "./ReplyForm.js"
+import PostReply from "./PostReply.js";
+import UpvoteDownVote from "./UpvoteDownvote.js";
+import ReplyForm from "./ReplyForm.js";
 
 export default function PostDetail(props) {
-  const currentUser = { username: "CurrentUser" }
+  const currentUser = { username: "CurrentUser" };
 
   const post = {
     id: 2,
@@ -21,7 +21,7 @@ export default function PostDetail(props) {
     date: "Nov 16, 2019",
     time: "10:05pm",
     votes: 3,
-  }
+  };
 
   const replies = [
     {
@@ -45,15 +45,14 @@ export default function PostDetail(props) {
       text: "yet another comment to the post",
       notification: "",
     },
-  ]
+  ];
 
-  const [postState, setPostState] = useState(post)
   const [repliesState, setRepliesState] = useState(
     replies.filter((reply) => reply.postId === post.id)
-  )
+  );
 
-  let votes = postState.votes
-  const [votesState, setVotesState] = useState(votes)
+  let votes = post.votes;
+  const [votesState, setVotesState] = useState(votes);
 
   const addReply = (text) => {
     const newReply = {
@@ -62,33 +61,33 @@ export default function PostDetail(props) {
       username: currentUser.username,
       text: text,
       notification: "",
-    }
+    };
 
-    setRepliesState(repliesState.concat(newReply))
-  }
+    setRepliesState(repliesState.concat(newReply));
+  };
 
   const upvote = () => {
     //props.voteHandler(props.post)
     //setVotesState(props.post.votes)
-    setVotesState(votesState + 1)
-  }
+    setVotesState(votesState + 1);
+  };
 
   const downvote = () => {
     //props.unvoteHandler(props.post)
     //setVotesState(props.post.votes)
-    setVotesState(votesState - 1)
-  }
+    setVotesState(votesState - 1);
+  };
 
   const editReply = (reply) => {
-    const localReplies = _.clone(repliesState)
+    const localReplies = _.clone(repliesState);
 
     for (let i = 0; i < localReplies.length; i++) {
       if (reply.id === localReplies[i].id) {
-        localReplies[i].text = reply.text
+        localReplies[i].text = reply.text;
       }
     }
-    setRepliesState(localReplies)
-  }
+    setRepliesState(localReplies);
+  };
 
   return (
     <Container>
@@ -111,10 +110,10 @@ export default function PostDetail(props) {
                   item
                   style={{ display: "inline-block", paddingLeft: "1em" }}
                 >
-                  <Typography variant="h5">{postState.title}</Typography>
+                  <Typography variant="h5">{post.title}</Typography>
                 </Grid>
               </Grid>
-              <Typography>{postState.postText}</Typography>
+              <Typography>{post.postText}</Typography>
 
               <ReplyForm addReplyHandler={addReply}></ReplyForm>
               {repliesState.map((reply) => (
@@ -126,10 +125,10 @@ export default function PostDetail(props) {
                     saveHandler={(r) => {
                       for (const property in r) {
                         if (reply.hasOwnProperty === property) {
-                          reply[property] = r[property]
+                          reply[property] = r[property];
                         }
                       }
-                      setRepliesState(_.clone(repliesState))
+                      setRepliesState(_.clone(repliesState));
                     }}
                   />
                 </Container>
@@ -139,5 +138,5 @@ export default function PostDetail(props) {
         </Paper>
       </Grid>
     </Container>
-  )
+  );
 }
