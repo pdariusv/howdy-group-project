@@ -5,7 +5,6 @@ import {
   Button,
   ListItemIcon,
   ListItemText,
-  Typography,
   Link,
   styled,
 } from "@material-ui/core";
