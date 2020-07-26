@@ -49,5 +49,6 @@
   "bugs": {
     "url": "https://github.com/brleinad/howdy-group-project/issues"
   },
-  "homepage": "https://github.com/brleinad/howdy-group-project#readme"
+  "homepage": "https://github.com/brleinad/howdy-group-project#readme",
+  "server": "http://localhost:5000"
 }
