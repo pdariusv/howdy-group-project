@@ -13,28 +13,20 @@ import Icon from "@material-ui/core/Icon";
 
 import EditPostForm from "./EditPostForm.js";
 
-//component that reprsents a single post.
-
 const MyButton = styled(Button)({
   color: "grey",
   fontSize: 10,
   marginLeft: 52,
   marginRight: -70,
   marginTop: -20,
-  //paddingLeft: 70
 });
 export default function Post(props) {
-  // const classes = useStyles();
-  // console.log("Post.js - props", props);
   return (
-    <List
-    // className={classes.root}
-    >
+    <List>
       <ListItem alignItems="flex-start">
         <ListItemIcon>
           <Icon fontSize="small">code</Icon>
         </ListItemIcon>
-        {/**/}
         <ListItemText
           primary={
             <Link href={`/posts/${props.post.id}`}>{props.post.title}</Link>
