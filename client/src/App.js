@@ -5,7 +5,7 @@ import axios from "axios";
 
 //comment data may not need to be passed down to rightpanel.
 import { comments, postData } from "./data/store.js";
-import CombinedPanels from "./components/Forum/Combined-Panels";
+import CombinedPanels from "./components/Forum/CombinedPanels";
 import PostDetail from "./components/Dialogs/PostDetail.js";
 
 // import "./App.css";

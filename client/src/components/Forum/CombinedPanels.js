@@ -2,8 +2,8 @@ import React from "react";
 
 import { Grid, Paper, styled } from "@material-ui/core";
 
-import LeftPanel from "./Left-Panel";
-import RightPanel from "./Right-Panel";
+import LeftPanel from "./LeftPanel";
+import RightPanel from "./RightPanel";
 
 
 const MyGrid = styled(Grid)({
