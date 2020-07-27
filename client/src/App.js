@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Route } from "react-router-dom";
 import axios from "axios";
 import { comments, postData } from "./data/store.js";
@@ -86,7 +87,7 @@ function App() {
   /*****REPLY CONTROLLER LOGIC SHOULD GO HERE BUT CURRENTLY IN POSTDETAIL.JS; NEEDS TO BE RE-FACTORED.*********/
 
   return (
-    <div className="App">
+    <Router>
       <Route
         exact
         path="/"
@@ -112,7 +113,7 @@ function App() {
           <PostDetail {...props} comments={comments} post={postData} />
         )}
       />
-    </div>
+    </Router>
   );
 }
 
