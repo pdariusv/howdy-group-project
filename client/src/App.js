@@ -5,6 +5,8 @@ import axios from "axios";
 import { comments, postData } from "./data/store.js";
 import CombinedPanels from "./components/Forum/CombinedPanels";
 import PostDetail from "./components/Dialogs/PostDetail.js";
+import StaticPage from "./components/Forum/StaticPage";
+// import PostReply from "./components/Dialogs/PostReply.js";
 
 function App() {
   // Initial form state is for setting current post. This is then updated based on the post that the user wants to edit.
@@ -113,6 +115,10 @@ function App() {
           <PostDetail {...props} comments={comments} post={postData} />
         )}
       />
+      <Route
+        path="/static-page"
+        render={StaticPage}
+      />  
     </Router>
   );
 }
