@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+const Post = require('./post.model');
 const express = require('express');
 
 const postRouter = express.Router();
-let Post = require('./post.model')
 
 // Root Route: get all posts. 
 postRouter.route('/').get((req, res) => {
@@ -73,22 +72,6 @@ postRouter.route('/delete/:id').post((req, res) => {
             console.log('Post deleted');
             res.status(200).json({'post': 'Post deleted succesfully'})
         }
-        /*
-        if (!post) {
-            console.log('Post to delete not found')
-            res.status(400).send("Post not found");
-        } else {
-            Post.deleteOne(post._id)
-            .then(post => {
-                console.log('Post was deleted')
-                res.status(200).json({'success': 'Post Deleted!'});
-            })
-            .catch(error => {
-                console.log('ERROR: deleting post: ', error)
-                res.status(400).send('Could not delete post.')
-            })
-        }
-        */
     });
 });
 
