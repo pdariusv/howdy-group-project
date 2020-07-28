@@ -1,8 +1,7 @@
 //REF:https://www.apple.com/ca/legal/internet-services/terms/site.html
 //REF:https://www.legalnature.com/guides/why-your-website-needs-a-strong-terms-of-use-agreement-and-what-to-include
 //NOTE: apple content added temporarily, will be removed for real term-of use.
-const context = {
-  termOfUse: [
+const termOfUse = [
     {
       name: "ownership",
       title: "Ownership of Site; Agreement to Terms of Use",
@@ -79,12 +78,10 @@ const context = {
       content: "Any feedback you provide at this site shall be deemed to be non-confidential. Apple shall be free to use such information on an unrestricted basis."
     }
   ]
-}
 
 
 
-const templateElement = document.getElementById('templateHB');
-const templateSource = templateElement.innerHTML;
-const template = Handlebars.compile(templateSource);
-const compiledHtml = template(context);
-document.getElementById('sub-section').innerHTML = compiledHtml;
+
+
+
+export default termOfUse;
