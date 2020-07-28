@@ -1,3 +1,6 @@
+//REF:https://www.apple.com/ca/legal/internet-services/terms/site.html
+//REF:https://www.legalnature.com/guides/why-your-website-needs-a-strong-terms-of-use-agreement-and-what-to-include
+//NOTE: apple content added temporarily, will be removed for real term-of use.
 const context = {
   termOfUse : [
     {
