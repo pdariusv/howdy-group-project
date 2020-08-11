@@ -10,14 +10,14 @@ class MySubSection extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name: '',
+      nameSub: '',
       title: '',
       content: ''
     };
   }
   render(){
-    return (<article id={this.props.name}>
-      <section class="container">
+    return (<article id={this.props.nameSub}>
+      <section className="container">
         <h2>{this.props.title}</h2>
         <p>{this.props.content}</p>
       </section>
@@ -30,9 +30,9 @@ export default function StaticPage() {
     <MyBox>
     <div>
       <main>
-        <article id={"term-of-use"}>
-          <section id="sub-section" class="container">
-          { termOfUse.map( (term,idx) => ( <MySubSection title={term.title} name={term.name}  content={term.content}/> ))}
+        <article id="term-of-use">
+          <section id="sub-section" className="container">
+          { termOfUse.map( (term,idx) => ( <MySubSection title={term.title} nameSub={term.name}  content={term.content}/> ))}
           </section>
         </article>
       </main>
