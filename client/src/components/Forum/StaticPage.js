@@ -16,7 +16,12 @@ class MySubSection extends React.Component {
     };
   }
   render(){
-    return (<div></div>);
+    return (<article id={this.props.name}>
+      <section class="container">
+        <h2>{this.props.title}</h2>
+        <p>{this.props.content}</p>
+      </section>
+    </article>);
   }
 }
 
