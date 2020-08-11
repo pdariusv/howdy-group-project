@@ -11,10 +11,10 @@ export default function StaticPage() {
     <MyBox>
     <div>
       <main>
-        <article id="term-of-use">
+        <article id={"term-of-use"}>
           <section id="sub-section" class="container">
           { termOfUse.map( (term,idx) => (
-            <article id="ownership">
+            <article id={term.name}>
               <section class="container">
                 <h2>{term.title}</h2>
                 <p>{term.content}</p>
