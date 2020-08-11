@@ -9,6 +9,11 @@ const MyBox = styled(Box)({
 class MySubSection extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      name: '',
+      title: '',
+      content: ''
+    };
   }
   render(){
     return (<div></div>);
