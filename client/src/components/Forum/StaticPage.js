@@ -6,6 +6,15 @@ const MyBox = styled(Box)({
   paddingLeft: 25
 });
 
+class MySubSection extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return (<div></div>);
+  }
+}
+
 export default function StaticPage() {
   return (
     <MyBox>
