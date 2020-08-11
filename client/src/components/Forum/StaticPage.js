@@ -7,10 +7,10 @@ const MyBox = styled(Box)({
 });
 
 const MySubSection = (props) => {
-    return (<article id={this.props.nameSub}>
+    return (<article id={props.nameSub}>
       <section className="container">
-        <h2>{this.props.title}</h2>
-        <p>{this.props.content}</p>
+        <h2>{props.title}</h2>
+        <p>{props.content}</p>
       </section>
     </article>);
 }
