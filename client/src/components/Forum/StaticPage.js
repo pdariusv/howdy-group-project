@@ -32,8 +32,7 @@ export default function StaticPage() {
       <main>
         <article id={"term-of-use"}>
           <section id="sub-section" class="container">
-          { termOfUse.map( (term,idx) => ( <MySubSection/>) 
-              )}
+          { termOfUse.map( (term,idx) => ( <MySubSection/> ))}
           </section>
         </article>
       </main>
