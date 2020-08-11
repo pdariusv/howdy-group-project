@@ -6,23 +6,13 @@ const MyBox = styled(Box)({
   paddingLeft: 25
 });
 
-class MySubSection extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      nameSub: '',
-      title: '',
-      content: ''
-    };
-  }
-  render(){
+const MySubSection = (props) => {
     return (<article id={this.props.nameSub}>
       <section className="container">
         <h2>{this.props.title}</h2>
         <p>{this.props.content}</p>
       </section>
     </article>);
-  }
 }
 
 export default function StaticPage() {
