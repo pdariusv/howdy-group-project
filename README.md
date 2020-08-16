@@ -4,7 +4,7 @@ This is a community group project to gain practical fullstack experience working
 
 ## Contribute
 
-No matter your level, your contributions are always welcome. It could be in the form of a question, comment, feedback, pull request, new issue, etc. Contributing guide coming soon. In the meanwhile, check out the [issues](https://github.com/pdariusv/howdy-group-project/issues), join our slack (luciancic or pdariusv can send you an invite) and our [Howdy group](https://www.joinhowdy.com/groups/5e7cde8f9007a22d5dae6c43) (weekly meet on Tuesdays).
+No matter your level, your contributions are always welcome. It could be in the form of a question, comment, feedback, pull request, new issue, etc. Read the [contribution guide](CONTRIBUTING.md) for more details on submitting PRs.
 
 ## Dev env setup
 
