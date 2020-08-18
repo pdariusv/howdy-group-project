@@ -1,5 +1,5 @@
 import React from "react";
-import { Box,  styled } from "@material-ui/core";
+import { Box, Container, Typography, styled } from "@material-ui/core";
 import termOfUse from '../../data/term-of-use-data'
 
 const MyBox = styled(Box)({
@@ -8,10 +8,10 @@ const MyBox = styled(Box)({
 
 const MySubSection = (props) => {
     return (<article id={props.nameSub}>
-      <section className="container">
-        <h2>{props.title}</h2>
-        <p>{props.content}</p>
-      </section>
+      <Container className="container">
+        <Typography component="h2" color="textPrimary">{props.title}</Typography>
+        <Typography component="p" color="textSecondary">{props.content}</Typography>
+      </Container>
     </article>);
 }
 
