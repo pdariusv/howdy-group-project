@@ -54,7 +54,7 @@ export default function PostReply(props) {
       />
       <Typography variant={"caption"}>{props.reply.username}</Typography>
       { props.currentUser.username === props.reply.username && (
-      <Grid container spacing={1}>
+      <Grid container spacing={1} style={{ paddingTop: '10px'}}>
         <Grid item>
           {!state.edit && (
             <Button
