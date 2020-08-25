@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Button, Grid, Typography, TextField } from "@material-ui/core"
 import EditButton from './EditButton'
+import SaveButton from './SaveButton'
 
 function ReplyText(props) {
   if (props.editEnabled === false) {
@@ -45,21 +46,13 @@ export default function PostReply(props) {
             <EditButton reply={props.reply} handleClick={() => setState({ ...state, isEditing: true })} />
           )}
           {state.isEditing && (
-            <Button
-              id={"edit-button-" + props.reply.id}
-              data-reply-id={props.reply.id}
-              color={"primary"}
-              size={"small"}
-              variant={"outlined"}
-              onClick={() => {
+            <SaveButton 
+              reply={props.reply}
+              handleClick={() => {
                 setState({ ...state, isEditing: false })
                 props.saveHandler(state)
               }}
-              style={{ marging: "0 10px 0 0" }}
-              value={props.reply.id}
-            >
-              save
-            </Button>
+            />
           )}
         </Grid>
         <Grid item>
