@@ -1,19 +1,6 @@
 import React, { useState } from "react"
 import { Button, Grid, Typography, TextField } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core"
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    maringRight: "10px",
-  },
-}))
+import EditButton from './EditButton'
 
 function ReplyText(props) {
   if (props.editEnabled === false) {
@@ -39,15 +26,13 @@ function ReplyText(props) {
 }
 
 export default function PostReply(props) {
-  const [state, setState] = useState({ edit: false, text: props.reply.text })
-
-  const classes = useStyles()
+  const [state, setState] = useState({ isEditing: false, text: props.reply.text })
 
   return (
     <Grid>
       <ReplyText
         text={state.text}
-        editEnabled={state.edit}
+        editEnabled={state.isEditing}
         updateText={(e) => {
           setState({ ...state, text: e.target.value })
         }}
@@ -56,34 +41,18 @@ export default function PostReply(props) {
       { props.currentUser.username === props.reply.username && (
       <Grid container spacing={1} style={{ paddingTop: '10px'}}>
         <Grid item>
-          {!state.edit && (
-            <Button
-              id={"edit-button-" + props.reply.id}
-              data-reply-id={props.reply.id}
-              className={classes.control}
-              color={"primary"}
-              size={"small"}
-              variant={"outlined"}
-              disabled={props.currentUser.username !== props.reply.username}
-              onClick={() => {
-                setState({ ...state, edit: true })
-              }}
-              style={{ marging: "0 10px 0 0" }}
-              value={props.reply.id}
-            >
-              Edit
-            </Button>
+          {!state.isEditing && (
+            <EditButton reply={props.reply} handleClick={() => setState({ ...state, isEditing: true })} />
           )}
-          {state.edit && (
+          {state.isEditing && (
             <Button
               id={"edit-button-" + props.reply.id}
               data-reply-id={props.reply.id}
-              className={classes.control}
               color={"primary"}
               size={"small"}
               variant={"outlined"}
               onClick={() => {
-                setState({ ...state, edit: false })
+                setState({ ...state, isEditing: false })
                 props.saveHandler(state)
               }}
               style={{ marging: "0 10px 0 0" }}
