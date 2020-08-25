@@ -74,7 +74,7 @@ export default function PostReply(props) {
             </Button>
           )}
 
-          {state.edit === true && (
+          {state.edit === true && ( props.currentUser.username !== props.reply.username &&
             <Button
               id={"edit-button-" + props.reply.id}
               data-reply-id={props.reply.id}
@@ -82,7 +82,6 @@ export default function PostReply(props) {
               color={"primary"}
               size={"small"}
               variant={"outlined"}
-              disabled={props.currentUser.username !== props.reply.username}
               onClick={() => {
                 setState({ ...state, edit: false })
                 props.saveHandler(state)
@@ -95,16 +94,15 @@ export default function PostReply(props) {
           )}
         </Grid>
         <Grid item>
-          <Button
+          {props.currentUser.username !== props.reply.username && <Button
             data-reply-id={props.reply.id}
             color={"secondary"}
             size={"small"}
             variant={"outlined"}
-            disabled={props.currentUser.username !== props.reply.username}
             onClick={() => props.removeReplyFunc(props.PostReply.id)}
           >
             Delete
-          </Button>
+          </Button>}
         </Grid>
       </Grid>
     </Grid>
