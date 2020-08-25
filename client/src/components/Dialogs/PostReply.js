@@ -53,9 +53,10 @@ export default function PostReply(props) {
         }}
       />
       <Typography variant={"caption"}>{props.reply.username}</Typography>
+      { props.currentUser.username === props.reply.username && (
       <Grid container spacing={1}>
         <Grid item>
-          {state.edit === false && (
+          {!state.edit && (
             <Button
               id={"edit-button-" + props.reply.id}
               data-reply-id={props.reply.id}
@@ -73,8 +74,7 @@ export default function PostReply(props) {
               Edit
             </Button>
           )}
-
-          {state.edit === true && ( props.currentUser.username !== props.reply.username &&
+          {state.edit && (
             <Button
               id={"edit-button-" + props.reply.id}
               data-reply-id={props.reply.id}
@@ -94,7 +94,7 @@ export default function PostReply(props) {
           )}
         </Grid>
         <Grid item>
-          {props.currentUser.username !== props.reply.username && <Button
+          <Button
             data-reply-id={props.reply.id}
             color={"secondary"}
             size={"small"}
@@ -102,9 +102,9 @@ export default function PostReply(props) {
             onClick={() => props.removeReplyFunc(props.PostReply.id)}
           >
             Delete
-          </Button>}
+          </Button>
         </Grid>
-      </Grid>
+      </Grid>)}
     </Grid>
   )
 }
