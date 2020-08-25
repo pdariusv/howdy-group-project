@@ -1,7 +1,8 @@
 import React, { useState } from "react"
-import { Button, Grid, Typography, TextField } from "@material-ui/core"
-import EditButton from './EditButton'
-import SaveButton from './SaveButton'
+import { Grid, Typography, TextField } from "@material-ui/core"
+import EditButton from './buttons/EditButton'
+import SaveButton from './buttons/SaveButton'
+import DeleteButton from './buttons/DeleteButton'
 
 function ReplyText(props) {
   if (props.editEnabled === false) {
@@ -56,15 +57,7 @@ export default function PostReply(props) {
           )}
         </Grid>
         <Grid item>
-          <Button
-            data-reply-id={props.reply.id}
-            color={"secondary"}
-            size={"small"}
-            variant={"outlined"}
-            onClick={() => props.removeReplyFunc(props.PostReply.id)}
-          >
-            Delete
-          </Button>
+          <DeleteButton reply={props.reply} handleClick={() => props.removeReplyFunc(props.PostReply.id)}/>
         </Grid>
       </Grid>)}
     </Grid>
