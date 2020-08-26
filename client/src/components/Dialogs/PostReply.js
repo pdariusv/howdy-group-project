@@ -30,6 +30,16 @@ function ReplyText(props) {
 export default function PostReply(props) {
   const [state, setState] = useState({ isEditing: false, text: props.reply.text })
 
+  const removeReplyFunc = arg => {
+  //   const newReplies = [...oldReply];
+  //   const newReplyAfterRemovals = newReplies.filter(reply => reply.id !== arg);
+  //   setOldReply(newReplyAfterRemovals);
+  //   console.log("this is the remove reply button", newReplyAfterRemovals);
+  console.log(state);
+  setState({...state, text: " "});
+  console.log(state);
+   };
+
   return (
     <Grid>
       <ReplyText
@@ -57,7 +67,7 @@ export default function PostReply(props) {
           )}
         </Grid>
         <Grid item>
-          <DeleteButton reply={props.reply} handleClick={() => props.removeReplyFunc(props.PostReply.id)}/>
+          <DeleteButton reply={props.reply} handleClick={removeReplyFunc}/>
         </Grid>
       </Grid>)}
     </Grid>
