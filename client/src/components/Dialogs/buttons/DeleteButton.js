@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button } from "@material-ui/core"
 
-const DeleteButton = (props) => (
+const DeleteButton = ({ handleClick }) => (
   <Button
-    data-reply-id={props.reply.id}
     color={"secondary"}
     size={"small"}
     variant={"outlined"}
-    onClick={props.handleClick}
+    onClick={handleClick}
   >
     Delete
   </Button>

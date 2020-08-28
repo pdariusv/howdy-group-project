@@ -28,36 +28,33 @@ function ReplyText(props) {
 }
 
 export default function PostReply(props) {
-  const [state, setState] = useState({ isEditing: false, text: props.reply.text })
+  const [isEditing, setIsEditing] = useState(false);
+  const [replyText, setReplyText] = useState(props.reply.text);
+  
+  const startEditing = () => setIsEditing(true);
+  const finishEditing = () => setIsEditing(false);
+  const updateText = (e) => setReplyText(e.target.value);
+  const saveHandler = () => {
+    finishEditing();
+    props.editHandler(replyText);
+  };
 
   return (
     <Grid>
       <ReplyText
-        text={state.text}
-        editEnabled={state.isEditing}
-        updateText={(e) => {
-          setState({ ...state, text: e.target.value })
-        }}
+        text={replyText}
+        editEnabled={isEditing}
+        updateText={updateText}
       />
       <Typography variant={"caption"}>{props.reply.username}</Typography>
       { props.currentUser.username === props.reply.username && (
       <Grid container spacing={1} style={{ paddingTop: '10px'}}>
         <Grid item>
-          {!state.isEditing && (
-            <EditButton reply={props.reply} handleClick={() => setState({ ...state, isEditing: true })} />
-          )}
-          {state.isEditing && (
-            <SaveButton 
-              reply={props.reply}
-              handleClick={() => {
-                setState({ ...state, isEditing: false })
-                props.saveHandler(state)
-              }}
-            />
-          )}
+          {!isEditing && <EditButton handleClick={startEditing} />}
+          {isEditing && <SaveButton handleClick={saveHandler} />}
         </Grid>
         <Grid item>
-          <DeleteButton reply={props.reply} handleClick={() => props.removeReplyFunc(props.PostReply.id)}/>
+          <DeleteButton handleClick={() => props.removeReplyFunc(props.PostReply.id)}/>
         </Grid>
       </Grid>)}
     </Grid>
