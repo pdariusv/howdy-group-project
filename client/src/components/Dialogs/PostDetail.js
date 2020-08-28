@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Paper, Container, Grid, Typography } from "@material-ui/core";
@@ -77,15 +76,15 @@ export default function PostDetail(props) {
     setVotesState(votesState - 1);
   };
 
-  const editReply = (reply) => {
-    const localReplies = _.clone(repliesState);
-
-    for (let i = 0; i < localReplies.length; i++) {
-      if (reply.id === localReplies[i].id) {
-        localReplies[i].text = reply.text;
+  const createEditReplyHandler = id => text => {
+    const updatedReplies = repliesState.map(reply => {
+      if (reply.id === id) {
+        reply.text = text;
+        return reply;
       }
-    }
-    setRepliesState(localReplies);
+      return reply;
+    })
+    setRepliesState(updatedReplies);
   };
 
   return (
@@ -120,15 +119,7 @@ export default function PostDetail(props) {
                   <PostReply
                     reply={reply}
                     currentUser={currentUser}
-                    editHandler={editReply}
-                    saveHandler={(r) => {
-                      for (const property in r) {
-                        if (reply.hasOwnProperty === property) {
-                          reply[property] = r[property];
-                        }
-                      }
-                      setRepliesState(_.clone(repliesState));
-                    }}
+                    editHandler={createEditReplyHandler(reply.id)}
                   />
                 </Container>
               ))}
