@@ -50,18 +50,11 @@ export default function PostReply(props) {
       { props.currentUser.username === props.reply.username && (
       <Grid container spacing={1} style={{ paddingTop: '10px'}}>
         <Grid item>
-          {!isEditing && (
-            <EditButton reply={props.reply} handleClick={startEditing} />
-          )}
-          {isEditing && (
-            <SaveButton 
-              reply={props.reply}
-              handleClick={saveHandler}
-            />
-          )}
+          {!isEditing && <EditButton handleClick={startEditing} />}
+          {isEditing && <SaveButton handleClick={saveHandler} />}
         </Grid>
         <Grid item>
-          <DeleteButton reply={props.reply} handleClick={() => props.removeReplyFunc(props.PostReply.id)}/>
+          <DeleteButton handleClick={() => props.removeReplyFunc(props.PostReply.id)}/>
         </Grid>
       </Grid>)}
     </Grid>
