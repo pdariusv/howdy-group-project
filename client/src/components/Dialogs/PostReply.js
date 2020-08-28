@@ -28,31 +28,32 @@ function ReplyText(props) {
 }
 
 export default function PostReply(props) {
-  const [state, setState] = useState({ isEditing: false, text: props.reply.text })
+  const [isEditing, setIsEditing] = useState(false);
+  const [replyText, setReplyText] = useState(props.reply.text);
   
-  const startEditing = () => setState({ ...state, isEditing: true });
-  const finishEditing = () => setState({ ...state, isEditing: false });
-  const updateText = (e) => setState({ ...state, text: e.target.value });
+  const startEditing = () => setIsEditing(true);
+  const finishEditing = () => setIsEditing(false);
+  const updateText = (e) => setReplyText(e.target.value);
   const saveHandler = () => {
     finishEditing();
-    props.editHandler(state.text);
+    props.editHandler(replyText);
   };
 
   return (
     <Grid>
       <ReplyText
-        text={state.text}
-        editEnabled={state.isEditing}
+        text={replyText}
+        editEnabled={isEditing}
         updateText={updateText}
       />
       <Typography variant={"caption"}>{props.reply.username}</Typography>
       { props.currentUser.username === props.reply.username && (
       <Grid container spacing={1} style={{ paddingTop: '10px'}}>
         <Grid item>
-          {!state.isEditing && (
+          {!isEditing && (
             <EditButton reply={props.reply} handleClick={startEditing} />
           )}
-          {state.isEditing && (
+          {isEditing && (
             <SaveButton 
               reply={props.reply}
               handleClick={saveHandler}
