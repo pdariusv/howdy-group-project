@@ -11,5 +11,6 @@ No matter your level, your contributions are always welcome. It could be in the 
 Make sure you have `node` version 10.x or newer and `npm`. Also make sure MongoDB is installed and running.
 
 1. Install dependencies with `npm install` (backend) and `cd client && npm install` (frontend)
-2. Start the backend server with `npm run dev` from the root directory.
-3. Start the React dev server with `npm start` from the `client/` directory.
+1. Populate your DB with `npm run seed-db`.
+1. Start the backend server with `npm run dev` from the root directory.
+1. Start the React dev server with `npm start` from the `client/` directory.
