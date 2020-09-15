@@ -1,7 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-
-//should I nest comments array into postdata?
-export const comments = [
+const comments = [
   {
     id: 1,
     PostId: 1,
@@ -25,7 +22,7 @@ export const comments = [
   }
 ]
 
-export const postData = [
+const posts = [
   {
     id: 1,
     title: 'The almost-reactor',
@@ -318,3 +315,8 @@ export const postData = [
     time: '9:35pm'
   }
 ]
+
+module.exports = {
+  comments,
+  posts
+}

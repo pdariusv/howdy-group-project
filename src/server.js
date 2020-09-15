@@ -12,7 +12,7 @@ let postRouter = require("./post.router");
 const PORT = 5000;
 
 // Connecting to the MongoDB DB
-mongoose.connect("mongodb://127.0.0.1:27017/posts", {
+mongoose.connect("mongodb://127.0.0.1:27017/howdy", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
