@@ -19,6 +19,6 @@
     "nodemon": "^2.0.4"
   },
   "devDependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^3.1.1"
   }
 }
